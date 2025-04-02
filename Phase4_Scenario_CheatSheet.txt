@@ -1,0 +1,55 @@
+PHASE 4 - SCENARIO CONFIGURATION CHEAT SHEET
+============================================
+
+Use this guide to set the correct error/loss rates for sender and receiver
+based on the scenario being tested.
+
+Scenario 1 - No Errors/Loss (Baseline)
+--------------------------------------
+Sender:
+    error_rate = 0.0
+    loss_rate  = 0.0
+Receiver:
+    error_rate = 0.0
+    loss_rate  = 0.0
+
+Scenario 2 - ACK Packet Bit Error
+---------------------------------
+Sender:
+    error_rate = X  (e.g. 0.1 for 10%)
+    loss_rate  = 0.0
+Receiver:
+    error_rate = 0.0
+    loss_rate  = 0.0
+
+Scenario 3 - DATA Packet Bit Error
+----------------------------------
+Sender:
+    error_rate = 0.0
+    loss_rate  = 0.0
+Receiver:
+    error_rate = X  (e.g. 0.1 for 10%)
+    loss_rate  = 0.0
+
+Scenario 4 - ACK Packet Loss
+----------------------------
+Sender:
+    error_rate = 0.0
+    loss_rate  = X  (e.g. 0.1 for 10%)
+Receiver:
+    error_rate = 0.0
+    loss_rate  = 0.0
+
+Scenario 5 - DATA Packet Loss
+-----------------------------
+Sender:
+    error_rate = 0.0
+    loss_rate  = 0.0
+Receiver:
+    error_rate = 0.0
+    loss_rate  = X  (e.g. 0.1 for 10%)
+
+Note:
+-----
+Only one side simulates errors or loss depending on the scenario.
+Always change ONLY ONE rate (either error or loss) on the correct side.

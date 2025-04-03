@@ -5,7 +5,7 @@ Name of files: receiver.py, sender.py, and tiger.jpg
 
 This phase was incorporating a pipeline transfer and a "GO-BACK-N" Protocol on a unreliable UDP channel.
 
-The purpose of the receiver file is to listen for incomping packets from the sender file. Will validate packets checks for correct sequence of numbers to make sure there's no dupiclates. Will validate packets and write data to a new file 'received_tiger.jpg'.
+The purpose of the receiver file is to listen for incoming packets from the sender file. Will validate packets checks for correct sequence of numbers to make sure there's no dupiclates. Will validate packets and write data to a new file 'received_tiger.jpg'.
 
 The purpose of the sender file is to read the 'tiger.jpg' in 1024 byte chunks and create packets. Then it will send the packets to the receiver after sequencing them.
 

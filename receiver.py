@@ -31,29 +31,31 @@ class Receiver:
                 try:
                     packet, sender_addr = self.sock.recvfrom(4 + PACKET_SIZE)
 
-                    if random.random() < self.loss_rate:
-                        print("Simulating data packet loss. Dropping packet.")
-                        continue
-
+                    # Simulate data packet loss (not done in this case)
                     seq_num = struct.unpack('!I', packet[:4])[0]
 
+                    # Check for EOF sequence
                     if seq_num == EOF_SEQ:
                         print("EOF received.")
                         break
 
                     data = self.corrupt_data(packet[4:], self.error_rate)
 
+                    # If the expected sequence number is received, write the data and increment expected_seq
                     if seq_num == self.expected_seq:
                         f.write(data)
                         self.expected_seq += 1
 
+                    # Send an ACK for the last successfully received packet
                     ack = struct.pack('!I', self.expected_seq - 1)
 
+                    # Simulate ACK loss (this is where the receiver simulates ACK loss)
                     if random.random() < self.loss_rate:
                         print("Simulating ACK loss. Not sending ACK.")
                         continue
 
                     self.sock.sendto(ack, sender_addr)
+
                 except Exception as e:
                     print("Exception:", e)
 

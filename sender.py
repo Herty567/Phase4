@@ -71,6 +71,7 @@ class Sender:
             try:
                 ack_pkt, _ = self.sock.recvfrom(4)
 
+                # Simulate ACK loss
                 if random.random() < self.loss_rate:
                     print("Simulating ACK loss.")
                     continue
@@ -88,7 +89,9 @@ class Sender:
                             self.start_timer()
 
             except socket.timeout:
-                continue
+                # Handle timeout without getting stuck
+                if self.base == self.total_packets:
+                    break
 
             if self.base == self.total_packets:
                 self.done = True
@@ -110,8 +113,8 @@ if __name__ == "__main__":
     port = 5003
     file_path = "tiger.jpg"
 
-    error_rate = 0.05
-    loss_rate = 0.0
+    error_rate = 0.0
+    loss_rate = 0.0  # This will only affect ACK loss in the receiver
 
     if scenario == 2:
         error_rate = rate
